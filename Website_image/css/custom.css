@@ -1,0 +1,32 @@
+body{
+  background-image: linear-gradient(to bottom, #4bb0e0, #db72bb);
+  background-repeat: no-repeat;
+}
+.custom-nav{
+    background-color: rgba(255, 255, 255, 0.8) !important;
+    /* opacity: 85%; */
+    color: #6b6c63;
+
+}
+.custom-nav-title{
+    color: #ac5e9b !important;
+    /* background-color: #121827 !important; */
+}
+.custom-card-hover{
+  background-color: #dceff9;
+  padding: 20px;
+  margin: 5px;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  color: rgba(255, 0, 0, 0.723);
+  }
+
+  .custom-card-hover:hover {
+    transform: scale(1.05, 1.05);
+    /* transform: translateX(-10px), translateY(-5px); */
+    background-color: #4c4d50; 
+    /* color: white !important;  */
+  }
+  .custom-cursor-pointer{
+    cursor: pointer;
+  }

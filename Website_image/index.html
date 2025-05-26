@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../css/custom.css">
+    <title>MovieShop</title>
+</head>
+<body class="mt-5">
+    <!-- the beggining of the nav bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-lg p-3 mb-5 bg-body custom-nav fixed-top" >
+        <div class="container-fluid">
+            <a class="navbar-brand custom-nav-title" href="#">MovieShop</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                <a class="nav-link text-muted active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-muted" href="#movieSection">Movies</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-muted" href="#showSection">TV Shows</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-muted" href="#favoriteSection">Favorites</a>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" autocomplete="off" id="search">
+                <!-- <button class="btn btn-outline-success">Search</button> -->
+            </form>
+            </div>
+        </div>
+    </nav>
+    <!-- the end of the nav bar -->
+
+    <!-- the beggining of the section -->
+    <section class=" mt-5 pt-3">
+        <div class="container mt-5">
+            <!-- lates release section -->
+            <div class="row mt-3 mb-3 justify-content-center text-center" id="latestReleaseSection" >
+                <div class="col-4 mt-3">
+                    <h2 class="text-white">Latest Release</h2>
+                </div>
+            </div>
+            <div class="row text-white text-center justify-content-center custom-container" id="latestReleaseContainer">
+                
+            </div>
+            <hr class="d-none" id="movieLine">
+
+            <div class="row mt-3 mb-3 justify-content-center text-center d-none" id="noResultContainer" >
+                <div class="col-4 mt-3">
+                    <h2 class="text-white" id="noResultMsg">No Result appear</h2>
+                </div>
+            </div>
+            <!-- movies section -->
+            <div class="row mt-3 mb-3 justify-content-center text-center d-none" id="movieSection" >
+                <div class="col-4 mt-3">
+                    <h2 class="text-white">Movies</h2>
+                </div>
+            </div>
+            <div class="row text-white text-center justify-content-center custom-container" id="moviesContainer">
+                
+            </div>
+            <hr class="d-none" id="showLine">
+            <!-- shows section -->
+            <div class="row mt-3 mb-3 justify-content-center text-center d-none" id="showSection" >
+                <div class="col-4 mt-3">
+                    <h2 class="text-white">Shows</h2>
+                </div>
+            </div>
+            <div class="row text-white text-center justify-content-center custom-container" id="showsContainer">
+                
+            </div>
+            <!-- favorite section -->
+            <div class="row mt-3 mb-3 justify-content-center text-center d-none" id="favoriteSection" >
+                <div class="col-4 mt-3">
+                    <h2 class="text-white">Favorites</h2>
+                </div>
+            </div>
+            <div class="row text-white text-center justify-content-center" id="favoriteContainer">
+                
+            </div>
+        </div>
+    </section>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="../scripts/script.js"></script>
+</body>
+</html>
