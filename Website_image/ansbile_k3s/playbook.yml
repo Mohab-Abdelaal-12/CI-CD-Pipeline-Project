@@ -1,0 +1,64 @@
+- name: Install K3s Master Node
+  hosts: master
+  become: true
+  vars:
+    k3s_token_path: /tmp/k3s_token.txt
+  tasks:
+    - name: Install K3s server
+      shell: |
+        curl -sfL https://get.k3s.io | sh -s - server --node-ip={{ k3s_master_ip }} --tls-san {{ k3s_master_ip }}
+      args:
+        creates: /etc/rancher/k3s/k3s.yaml
+
+    - name: Get K3s node token
+      slurp:
+        src: /var/lib/rancher/k3s/server/node-token
+      register: k3s_token_raw
+
+    - name: Set K3s token fact
+      set_fact:
+        k3s_token: "{{ k3s_token_raw.content | b64decode }}"
+
+    - name: Save token to file for later use
+      copy:
+        content: "{{ k3s_token }}"
+        dest: "{{ k3s_token_path }}"
+
+- name: Install K3s Worker Nodes
+  hosts: workers
+  become: true
+  vars:
+    k3s_token_path: /tmp/k3s_token.txt
+  tasks:
+    - name: Fetch the token from master to control machine
+      fetch:
+        src: "{{ k3s_token_path }}"
+        dest: "./k3s_token.txt"
+        flat: yes
+      delegate_to: master-node
+
+    - name: Copy the token to worker nodes
+      copy:
+        src: "./k3s_token.txt"
+        dest: "{{ k3s_token_path }}"
+
+    - name: Read token from file
+      shell: cat "{{ k3s_token_path }}"
+      register: token_output
+
+    - name: Install K3s agent
+      shell: |
+        curl -sfL https://get.k3s.io | K3S_URL="https://{{ k3s_master_ip }}:6443" K3S_TOKEN="{{ token_output.stdout }}" sh -
+      args:
+        creates: /etc/rancher/k3s/k3s-agent.yaml
+
+- name: Install kubectl on local machine
+  hosts: localhost
+  connection: local
+  become: true
+  tasks:
+    - name: Download kubectl binary (v1.29.0)
+      get_url:
+        url: https://dl.k8s.io/release/v1.29.0/bin/linux/amd64/kubectl
+        dest: /usr/local/bin/kubectl
+        mode: '0755'
