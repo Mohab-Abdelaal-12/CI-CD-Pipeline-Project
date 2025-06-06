@@ -35,5 +35,20 @@ pipeline {
                 }
             }
         }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG_FILE')]) {
+                    sh '''
+                        cp $KUBECONFIG_FILE $WORKSPACE/kubeconfig
+                        export KUBECONFIG=$WORKSPACE/kubeconfig
+                        kubectl apply -f k3s/deployment.yml
+                        kubectl apply -f k3s/service.yml
+                        kubectl apply -f k3s/ingress.yml
+                        kubectl apply -f k3s/albservice.yml
+                    '''
+                }
+            }
+        }
     }
 }
