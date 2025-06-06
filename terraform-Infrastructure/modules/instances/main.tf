@@ -1,1 +1,0 @@
-// Instances (bastion, master, workers)
