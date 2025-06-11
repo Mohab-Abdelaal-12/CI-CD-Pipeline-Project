@@ -1,21 +1,23 @@
 resource "aws_lb" "this" {
-  name               = "k3s-alb"
+  name               = "${var.name}-alb"
   internal           = false
   load_balancer_type = "application"
   security_groups    = [var.sg_id]
   subnets            = var.public_subnet_ids
 
   enable_deletion_protection = false
+
   tags = {
-    Name = "k3s-alb"
+    Name = "${var.name}-alb"
   }
 }
 
 resource "aws_lb_target_group" "ingress" {
-  name     = "k3s-ingress-tg"
-  port     = 80
-  protocol = "HTTP"
-  vpc_id   = var.vpc_id
+  name        = "${var.name}-tg"
+  port        = var.node_port
+  protocol    = "HTTP"
+  vpc_id      = var.vpc_id
+  target_type = "ip"
 
   health_check {
     path                = "/"
@@ -38,8 +40,9 @@ resource "aws_lb_listener" "http" {
   }
 }
 
-resource "aws_lb_target_group_attachment" "master" {
+
+resource "aws_lb_target_group_attachment" "nodes" {
   target_group_arn = aws_lb_target_group.ingress.arn
-  target_id        = var.target_id
-  port             = 80
+  target_id        = var.node_ip
+  port             = var.node_port
 }

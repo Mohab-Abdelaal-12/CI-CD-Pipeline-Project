@@ -18,6 +18,13 @@ resource "aws_security_group" "bastion" {
   }
 
   ingress {
+    from_port   = 30080
+    to_port     = 30080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
     from_port   = 6443
     to_port     = 6443
     protocol    = "tcp"
@@ -62,10 +69,16 @@ resource "aws_security_group" "nodes" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-
   ingress {
     from_port   = 443
     to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 30080
+    to_port     = 30080
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -104,6 +117,13 @@ resource "aws_security_group" "alb" {
   ingress {
     from_port   = 443
     to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 30080
+    to_port     = 30080
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
