@@ -140,6 +140,6 @@ kubectl apply -f k3s/
 ## 📬 Contact
 **Mohab Abdelaal**
 
-[![GitHub](https://img.shields.io/badge/GitHub-Mohab-Abdelaal-blue)](https://github.com/mohab-abdelaal-12)  
+[![GitHub](https://img.shields.io/badge/GitHub-Mohab--Abdelaal-blue)](https://github.com/Mohab-Abdelaal-12)  
 [![Email](https://img.shields.io/badge/Email-mohabahmed600gmail.com-red)](mailto:mohabahmed600@gmail.com)
 ---
